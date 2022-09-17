@@ -32,7 +32,6 @@ export default function Notes() {
       <div>
         {noteBlocks.map((data) => (
           <div className={styles.notes} key={noteBlocks.index}>
-            {data.type == "heading" && console.log("Bruh fuck you!")}
             <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}

@@ -16,9 +16,35 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { useState } from "react";
+import FileItem from "../components/FileItem";
 
 export default function Home() {
   const { data: session } = useSession();
+
+  const sampleDB = {
+    user: "mithun@mithunb.com",
+    files: [
+      {
+        type: "folder",
+        name: "Mithun",
+        contents: [],
+      },
+      {
+        type: "notebook",
+        name: "Bruh",
+        pages: [
+          {
+            title: "bruh",
+            content: [
+              { type: "heading", content: "Sample Heading" },
+              { type: "heading", content: "Sample Heading" },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+
   if (session) {
     return (
       <>
@@ -27,13 +53,6 @@ export default function Home() {
           Sign out
         </Button>
         <div className={styles.container}>
-          <CodeMirror
-            value="console.log('hello world!');"
-            height="200px"
-            theme="dark"
-            extensions={[javascript({ jsx: true })]}
-          />
-
           <Head>
             <title>Cotes</title>
             <meta
@@ -42,7 +61,18 @@ export default function Home() {
             />
           </Head>
 
-          <main className={styles.main}></main>
+          <main className={styles.main}>
+            <div>
+              <h1>{sampleDB.user}'s Files</h1>
+              <div>
+                {sampleDB.files.map((file) => (
+                  <div key={sampleDB.index}>
+                    <FileItem type={file.type} name={file.name} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </main>
         </div>
       </>
     );
