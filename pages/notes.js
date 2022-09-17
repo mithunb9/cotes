@@ -6,7 +6,7 @@ export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
 
   const onClick = () => {
-    setNoteBlocks([...noteBlocks, { type: "text", content: "" }]);
+    setNoteBlocks([...noteBlocks, { type: "text", content: "Sample Text" }]);
   };
 
   const deleteNote = () => {
@@ -14,7 +14,17 @@ export default function Notes() {
   };
 
   const addHeading = () => {
-    setNoteBlocks([...noteBlocks, { type: "heading", content: "" }]);
+    setNoteBlocks([
+      ...noteBlocks,
+      { type: "heading", content: "Sample Heading" },
+    ]);
+  };
+
+  const addCodeblock = () => {
+    setNoteBlocks([
+      ...noteBlocks,
+      { type: "code", content: "console.log('Hello World');" },
+    ]);
   };
 
   return (
@@ -22,6 +32,7 @@ export default function Notes() {
       <div>
         {noteBlocks.map((data) => (
           <div className={styles.notes} key={noteBlocks.index}>
+            {data.type == "heading" && console.log("Bruh fuck you!")}
             <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}
@@ -30,6 +41,7 @@ export default function Notes() {
           <button onClick={onClick}>Add</button>
           <button onClick={deleteNote}>Delete</button>
           <button onClick={addHeading}>Heading</button>
+          <button onClick={addCodeblock}>Code</button>
         </div>
       </div>
     </div>
