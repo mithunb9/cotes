@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.0.2",
     "@uiw/react-codemirror": "^4.12.3",
     "next": "12.3.0",
     "react": "18.2.0",
