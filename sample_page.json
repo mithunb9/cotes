@@ -1,8 +1,14 @@
 {
   "user": "pranavbalu",
-  "notebooks": [
+  "files": [
     {
-      "title": "Bruh",
+      "type": "folder",
+      "name": "Mithun",
+      "contents": []
+    },
+    {
+      "type": "notebook",
+      "name": "Bruh",
       "pages": [
         {
           "title": "bruh",
