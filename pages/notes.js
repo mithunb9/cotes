@@ -3,6 +3,8 @@ import styles from "../styles/Notes.module.css";
 import NoteBlock from "../components/NoteBlock";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
@@ -31,6 +33,28 @@ export default function Notes() {
 
   return (
     <div>
+      <div>
+        <Stack direction="row" spacing={2}>
+          <Button
+            color="inherit"
+            primary="black"
+            variant="outlined"
+            onClick={onClick}
+          >
+            Add
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={deleteNote}>
+            Delete
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={addHeading}>
+            Heading
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={addCodeblock}>
+            Code
+          </Button>
+        </Stack>
+      </div>
+
       <div>
         {noteBlocks.map((data) => (
           <div className={styles.notes} key={noteBlocks.index}>
