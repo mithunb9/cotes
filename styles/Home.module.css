@@ -108,6 +108,7 @@
   margin-left: 0.5rem;
 }
 
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -127,3 +128,21 @@
     filter: invert(1);
   }
 }
+
+
+.homeTitle {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+  margin-top: 20%;
+  text-align: center;
+}
+
+.profile {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+
+

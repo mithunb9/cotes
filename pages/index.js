@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import React, {Component} from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Button, Icon, IconButton } from "@mui/material";
+import { Button, Icon, IconButton, Avatar } from "@mui/material";
 import { firestore } from "../firebase/firebase";
 import {
   collection,
@@ -48,10 +49,16 @@ export default function Home() {
   if (session) {
     return (
       <>
-        Signed in as {session.user.email} <br />
-        <Button variant="contained" onClick={() => signOut()}>
-          Sign out
-        </Button>
+        <div className={styles.profile}>
+          <Avatar alt={session.user.name} src={session.user.image} />
+          <Button variant="contained" onClick={() => signOut()}>
+            Sign out
+          </Button>
+          Welcome! {session.user.name} <br />
+          Signed in as {session.user.email} <br />         
+        </div>
+        
+        
         <div className={styles.container}>
           <Head>
             <title>Cotes</title>
@@ -63,7 +70,7 @@ export default function Home() {
 
           <main className={styles.main}>
             <div>
-              <h1>{sampleDB.user}'s Files</h1>
+              <h1>{session.user.name}'s Files</h1>
               <div>
                 {sampleDB.files.map((file) => (
                   <div key={sampleDB.index}>
@@ -80,10 +87,13 @@ export default function Home() {
 
   return (
     <>
-      Not Signed in <br />
-      <Button variant="contained" onClick={() => signIn()}>
-        Sign in
-      </Button>
+      <div className={styles.homeTitle}>
+        CotesApp <br />
+        <Button variant="contained" onClick={() => signIn()}>
+            Sign in
+        </Button>
+      </div>
+      
     </>
   );
 }
