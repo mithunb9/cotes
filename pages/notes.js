@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Notes.module.css";
 import NoteBlock from "../components/NoteBlock";
 import { Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
@@ -36,14 +37,21 @@ export default function Notes() {
             <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}
-
         <div>
-          <Button 
-            variant="outlined"
-            onClick={onClick}>Add</Button>
-          <button onClick={deleteNote}>Delete</button>
-          <button onClick={addHeading}>Heading</button>
-          <button onClick={addCodeblock}>Code</button>
+          <Stack direction="row" spacing={2}>
+            <Button primary="black" variant="outlined" onClick={onClick}>
+              Add
+            </Button>
+            <Button variant="outlined" onClick={deleteNote}>
+              Delete
+            </Button>
+            <Button variant="outlined" onClick={addHeading}>
+              Heading
+            </Button>
+            <Button variant="outlined" onClick={addCodeblock}>
+              Code
+            </Button>
+          </Stack>
         </div>
       </div>
     </div>
