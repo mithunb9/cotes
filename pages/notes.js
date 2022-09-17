@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Notes.module.css";
 import NoteBlock from "../components/NoteBlock";
+import { Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
@@ -30,19 +32,33 @@ export default function Notes() {
   return (
     <div>
       <div>
+        <Stack direction="row" spacing={2}>
+          <Button
+            color="inherit"
+            primary="black"
+            variant="outlined"
+            onClick={onClick}
+          >
+            Add
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={deleteNote}>
+            Delete
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={addHeading}>
+            Heading
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={addCodeblock}>
+            Code
+          </Button>
+        </Stack>
+      </div>
+
+      <div>
         {noteBlocks.map((data) => (
           <div className={styles.notes} key={noteBlocks.index}>
-            {data.type == "heading" && console.log("Bruh fuck you!")}
             <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}
-
-        <div>
-          <button onClick={onClick}>Add</button>
-          <button onClick={deleteNote}>Delete</button>
-          <button onClick={addHeading}>Heading</button>
-          <button onClick={addCodeblock}>Code</button>
-        </div>
       </div>
     </div>
   );
