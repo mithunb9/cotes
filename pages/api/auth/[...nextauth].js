@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import './components/accessToken';
+import "./components/accessToken";
 
 export default NextAuth({
   providers: [
