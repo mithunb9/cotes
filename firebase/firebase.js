@@ -50,9 +50,9 @@ const { initializeApp } = require("firebase/app");
 const { getDatabase } = require("firebase/database");
 const { getFirestore } = require("firebase/firestore");
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+// if (process.env.NODE_ENV !== "production") {
+//   require("dotenv").config();
+// }
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -83,18 +83,10 @@ const addNotebook = async (user) => {
 
 const replaceNotebook = async (user, replacement) => {
   try {
-    if (replacement === null) {
-      await deleteDoc(doc(db, "users", user));
-    } else if (replacement !== null) {
-      await setDoc(doc(db, "users", user), replacement);
-    }
+    await setDoc(doc(db, "users", user), replacement);
   } catch (e) {
     console.error("Error replacing document: ", e);
   }
 };
 
-//module.exports(addPost);
-//addNotebook(bruh);
-//addNotebook(bruh2);
 replaceNotebook(bruh, bruh2);
-replaceNotebook(bruh2, null);
