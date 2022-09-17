@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Notes.module.css";
-import TextareaAutosize from "react-textarea-autosize";
+import NoteBlock from "../components/NoteBlock";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
 
   const onClick = () => {
-    setNoteBlocks([...noteBlocks, NoteBlock]);
+    setNoteBlocks([...noteBlocks, { type: "text", content: "" }]);
   };
 
   const deleteNote = () => {
@@ -14,15 +14,15 @@ export default function Notes() {
   };
 
   const addHeading = () => {
-    setNoteBlocks([...noteBlocks]);
+    setNoteBlocks([...noteBlocks, { type: "heading", content: "" }]);
   };
 
   return (
     <div>
       <div>
-        {noteBlocks.map(() => (
+        {noteBlocks.map((data) => (
           <div className={styles.notes} key={noteBlocks.index}>
-            <TextareaAutosize className={styles.textarea} />
+            <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}
 
