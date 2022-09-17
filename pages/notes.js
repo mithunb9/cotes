@@ -1,26 +1,36 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Notes.module.css";
-import TextareaAutosize from "react-textarea-autosize";
-
-const NoteBlock = () => <textarea></textarea>;
+import NoteBlock from "../components/NoteBlock";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
 
   const onClick = () => {
-    setNoteBlocks([...noteBlocks, NoteBlock]);
+    setNoteBlocks([...noteBlocks, { type: "text", content: "" }]);
+  };
+
+  const deleteNote = () => {
+    setNoteBlocks(noteBlocks.slice(0, -1));
+  };
+
+  const addHeading = () => {
+    setNoteBlocks([...noteBlocks, { type: "heading", content: "" }]);
   };
 
   return (
     <div>
-      <button onClick={onClick}>Click me</button>
-
       <div>
-        {noteBlocks.map(() => (
+        {noteBlocks.map((data) => (
           <div className={styles.notes} key={noteBlocks.index}>
-            <TextareaAutosize className={styles.textarea} />
+            <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}
+
+        <div>
+          <button onClick={onClick}>Add</button>
+          <button onClick={deleteNote}>Delete</button>
+          <button onClick={addHeading}>Heading</button>
+        </div>
       </div>
     </div>
   );
