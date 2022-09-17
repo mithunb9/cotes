@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Notes.module.css";
 import NoteBlock from "../components/NoteBlock";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
 
@@ -59,6 +61,17 @@ export default function Notes() {
             <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}
+
+        <div>
+          <button onClick={onClick}>Add</button>
+          <button onClick={deleteNote}>Delete</button>
+          <button onClick={addHeading}>Heading</button>
+          <Select>
+            <MenuItem value="javascript">JavaScript</MenuItem>
+            <MenuItem value="python">Python</MenuItem>
+          </Select>
+          <button onClick={addCodeblock}>Code</button>
+        </div>
       </div>
     </div>
   );

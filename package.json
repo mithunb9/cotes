@@ -16,15 +16,17 @@
     "@mui/material": "^5.10.5",
     "@next-auth/firebase-adapter": "^1.0.1",
     "@uiw/react-codemirror": "^4.12.3",
+    "axios": "^0.27.2",
     "dotenv": "^16.0.2",
     "firebase": "^9.10.0",
+    "fs": "^0.0.1-security",
     "github": "^14.0.0",
     "next": "12.3.0",
     "next-auth": "^4.10.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-textarea-autosize": "^8.3.4",
-    "vercel": "^28.2.5"
+    "vercel": "^19.1.2"
   },
   "devDependencies": {
     "eslint": "8.23.1",
