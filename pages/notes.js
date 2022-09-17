@@ -39,7 +39,7 @@ export default function Notes() {
         ))}
         <div>
           <Stack direction="row" spacing={2}>
-            <Button primary="black" variant="outlined" onClick={onClick}>
+            <Button color="inherit" primary="black" variant="outlined" onClick={onClick}>
               Add
             </Button>
             <Button variant="outlined" onClick={deleteNote}>
