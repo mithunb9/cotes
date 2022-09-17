@@ -32,27 +32,33 @@ export default function Notes() {
   return (
     <div>
       <div>
+        <Stack direction="row" spacing={2}>
+          <Button
+            color="inherit"
+            primary="black"
+            variant="outlined"
+            onClick={onClick}
+          >
+            Add
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={deleteNote}>
+            Delete
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={addHeading}>
+            Heading
+          </Button>
+          <Button color="inherit" variant="outlined" onClick={addCodeblock}>
+            Code
+          </Button>
+        </Stack>
+      </div>
+
+      <div>
         {noteBlocks.map((data) => (
           <div className={styles.notes} key={noteBlocks.index}>
             <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}
-        <div>
-          <Stack direction="row" spacing={2}>
-            <Button color="inherit" primary="black" variant="outlined" onClick={onClick}>
-              Add
-            </Button>
-            <Button variant="outlined" onClick={deleteNote}>
-              Delete
-            </Button>
-            <Button variant="outlined" onClick={addHeading}>
-              Heading
-            </Button>
-            <Button variant="outlined" onClick={addCodeblock}>
-              Code
-            </Button>
-          </Stack>
-        </div>
       </div>
     </div>
   );
