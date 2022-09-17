@@ -1,4 +1,3 @@
-
 const bruh = {
   user: "pranavbalu",
   files: [
@@ -47,7 +46,6 @@ const bruh2 = {
   ],
 };
 
-
 const { initializeApp } = require("firebase/app");
 const { getDatabase } = require("firebase/database");
 const { getFirestore } = require("firebase/firestore");
@@ -82,8 +80,6 @@ const addNotebook = async (notebook) => {
   }
 };
 
-
 //module.exports(addPost);
 //addNotebook(bruh);
 //addNotebook(bruh2);
-
