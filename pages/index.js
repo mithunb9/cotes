@@ -5,7 +5,7 @@ import React, {Component} from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Button, Icon, IconButton } from "@mui/material";
+import { Button, Icon, IconButton, Avatar } from "@mui/material";
 import { firestore } from "../firebase/firebase";
 import {
   collection,
@@ -50,12 +50,14 @@ export default function Home() {
     return (
       <>
         <div className={styles.profile}>
+          <Avatar alt={session.user.name} src={session.user.image} />
+          <Button variant="contained" onClick={() => signOut()}>
+            Sign out
+          </Button>
           Welcome! {session.user.name} <br />
           Signed in as {session.user.email} <br />         
         </div>
-        <Button variant="contained" onClick={() => signOut()}>
-          Sign out
-        </Button>
+        
         
         <div className={styles.container}>
           <Head>
