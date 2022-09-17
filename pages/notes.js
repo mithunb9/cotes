@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Notes.module.css";
+import TextareaAutosize from "react-textarea-autosize";
 
 const NoteBlock = () => <textarea></textarea>;
 
@@ -15,8 +16,10 @@ export default function Notes() {
       <button onClick={onClick}>Click me</button>
 
       <div>
-        {noteBlocks.map((NoteBlock) => (
-          <NoteBlock className={styles.notes} key={noteBlocks.index} />
+        {noteBlocks.map(() => (
+          <div className={styles.notes} key={noteBlocks.index}>
+            <TextareaAutosize className={styles.textarea} />
+          </div>
         ))}
       </div>
     </div>
