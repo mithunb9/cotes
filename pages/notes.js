@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Notes.module.css";
 import NoteBlock from "../components/NoteBlock";
+import { Button } from "@mui/material";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
@@ -37,7 +38,9 @@ export default function Notes() {
         ))}
 
         <div>
-          <button onClick={onClick}>Add</button>
+          <Button 
+            variant="outlined"
+            onClick={onClick}>Add</Button>
           <button onClick={deleteNote}>Delete</button>
           <button onClick={addHeading}>Heading</button>
           <button onClick={addCodeblock}>Code</button>
