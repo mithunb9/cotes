@@ -3,6 +3,7 @@ import styles from "../styles/Notes.module.css";
 import NoteBlock from "../components/NoteBlock";
 import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import { Tooltip } from "@mui/material";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
@@ -33,23 +34,31 @@ export default function Notes() {
     <div>
       <div>
         <Stack direction="row" spacing={2}>
-          <Button
-            color="inherit"
-            primary="black"
-            variant="outlined"
-            onClick={onClick}
-          >
-            Add
-          </Button>
-          <Button color="inherit" variant="outlined" onClick={deleteNote}>
-            Delete
-          </Button>
-          <Button color="inherit" variant="outlined" onClick={addHeading}>
-            Heading
-          </Button>
-          <Button color="inherit" variant="outlined" onClick={addCodeblock}>
-            Code
-          </Button>
+          <Tooltip title="Add" arrow>
+            <Button
+              color="inherit"
+              primary="black"
+              variant="outlined"
+              onClick={onClick}
+            >
+              Add
+            </Button>
+          </Tooltip>
+          <Tooltip title="Delete" arrow>
+            <Button color="inherit" variant="outlined" onClick={deleteNote}>
+              Delete
+            </Button>
+          </Tooltip>
+          <Tooltip title="Heading" arrow>
+            <Button color="inherit" variant="outlined" onClick={addHeading}>
+              Heading
+            </Button>
+          </Tooltip>
+          <Tooltip title="Code" arrow>
+            <Button color="inherit" variant="outlined" onClick={addCodeblock}>
+              Code
+            </Button>
+          </Tooltip>
         </Stack>
       </div>
 
