@@ -1,4 +1,3 @@
-
 const bruh = {
   user: "pranavbalu",
   files: [
@@ -47,7 +46,6 @@ const bruh2 = {
   ],
 };
 
-
 const { initializeApp } = require("firebase/app");
 const { getDatabase } = require("firebase/database");
 const { getFirestore } = require("firebase/firestore");
@@ -72,18 +70,31 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const { collection, addDoc, getDocs } = require("firebase/firestore");
+const { doc, deleteDoc, setDoc } = require("firebase/firestore");
 
-const addNotebook = async (notebook) => {
+const addNotebook = async (user) => {
   try {
-    const docRef = await addDoc(collection(db, "users"), notebook);
+    const docRef = await addDoc(collection(db, "users"), user);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
 
+const replaceNotebook = async (user, replacement) => {
+  try {
+    if (replacement === null) {
+      await deleteDoc(doc(db, "users", user));
+    } else if (replacement !== null) {
+      await setDoc(doc(db, "users", user), replacement);
+    }
+  } catch (e) {
+    console.error("Error replacing document: ", e);
+  }
+};
 
 //module.exports(addPost);
 //addNotebook(bruh);
 //addNotebook(bruh2);
-
+replaceNotebook(bruh, bruh2);
+replaceNotebook(bruh2, null);
