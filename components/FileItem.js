@@ -3,9 +3,7 @@ import BookIcon from "@mui/icons-material/Book";
 import styles from "./FileItem.module.css";
 
 export default function FileItem(props) {
-  const handleClick = () => {
-    console.log("Clicked " + props.name);
-  };
+  const handleClick = () => {};
 
   if (props.type === "folder") {
     return (

@@ -27,6 +27,10 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [displayData, setDisplaydata] = useState(data);
 
+  const onFileClick = (file) => {
+    console.log(file);
+  };
+
   useEffect(() => {
     async function fetchData() {
       if (session) {
@@ -80,7 +84,7 @@ export default function Home() {
               <h1>{session.user.name}'s Files</h1>
               <div>
                 {displayData?.files?.map((file) => (
-                  <div key={displayData.index}>
+                  <div key={displayData.index} onClick={onFileClick(file.name)}>
                     <FileItem type={file.type} name={file.name} />
                   </div>
                 ))}
