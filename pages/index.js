@@ -21,7 +21,7 @@ import FileItem from "../components/FileItem";
 import axios from "axios";
 import { Box } from "@mui/system";
 import SideBarItems from "../components/SideBarItems";
-
+import Editor from "../components/Editor";
 export default function Home() {
   const { data: session } = useSession();
   const [data, setData] = useState([]);
@@ -29,11 +29,8 @@ export default function Home() {
   const onFileClick = (e) => {};
 
   const addNotebook = () => {
-    data.files.push({
-      name: "Untitled",
-      type: "notebook",
-      content: "",
-    });
+    const newData = data.files.push({ name: "Untitled", id: "123", pages: [] });
+    setData(newData);
   };
 
   useEffect(() => {
@@ -84,18 +81,18 @@ export default function Home() {
               <div />
               Signed in as <br /> {session.user.name}
             </Box>
-          </div>{" "}
+          </div>
           {/* titleBar -- has 3 columns like |[TITLE] | [NAV BAR OR UTILITY BAR] | [SESSION INFO] | */}
           <div className={styles.titleBar}>
             <Box className={styles.sidebar}>
               <div>
                 <h1>{session.user.name}'s Files</h1>
-                {data?.files?.map((file) => (
+                {data?.files?.map((file, index) => (
                   <div
                     className={styles.fileItems}
                     key={data.index}
                     onClick={() => {
-                      onFileClick(data.index);
+                      onFileClick(index);
                     }}
                   >
                     <FileItem type={file.type} name={file.name} />
@@ -104,7 +101,9 @@ export default function Home() {
                 {/* display notebooks here */}
               </div>
             </Box>
-            <Box className={styles.folderDisp}>add pages inside notebook</Box>
+            <Box className={styles.folderDisp}>
+              <Editor />
+            </Box>
             <Box className={styles.profile}> right </Box>
           </div>
         </div>
