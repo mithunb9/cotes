@@ -59,6 +59,10 @@
   font-size: 1.5rem;
 }
 
+.title {
+  padding: 1rem;
+}
+
 .code {
   background: #fafafa;
   border-radius: 5px;

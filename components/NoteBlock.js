@@ -41,8 +41,10 @@ export default function NoteBlock(props) {
           extensions={[javascript({ jsx: true })]}
           onChange={onChange}
         />
+        <div>
+          <p>{output}</p>
+        </div>
         <button onClick={runCode}>Run</button>
-        <p>{output}</p>
       </div>
     );
   }
