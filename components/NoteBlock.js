@@ -14,7 +14,7 @@ export default function NoteBlock(props) {
       "http://localhost:3000/api/engine/run?language=javascript&code=" + value
     );
 
-    console.log(request.data);
+    setOutput(request.data.output);
   };
 
   const onChange = React.useCallback((value, viewUpdate) => {
