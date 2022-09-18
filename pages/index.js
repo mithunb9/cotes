@@ -64,8 +64,16 @@ export default function Home() {
           <div className={styles.titleBar}>
             <Box className={styles.title}>Cotes_</Box>
             <Box>
-              <div>
+              <div className={styles.utilButtons}>
                 <button onClick={addNotebook}>Add Notebook</button>
+                <ButtonGroup
+                  variant="contained"
+                  aria-label="outlined primary button group"
+                >
+                  <Button>One</Button>
+                  <Button>Two</Button>
+                  <Button>Three</Button>
+                </ButtonGroup>
               </div>
             </Box>
             <Box className={styles.profile}>
@@ -107,7 +115,7 @@ export default function Home() {
   return (
     <>
       <div className={styles.homeTitle}>
-        CotesApp <br />
+        Cotes_ <br />
         <Button variant="contained" onClick={() => signIn()}>
           Sign in
         </Button>
