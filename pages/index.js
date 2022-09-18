@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import React, {Component} from "react";
+import React, { Component } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -18,6 +18,8 @@ import {
 } from "firebase/firestore";
 import { useState } from "react";
 import FileItem from "../components/FileItem";
+import { Box } from "@mui/system";
+import SideBarItems from "../components/SideBarItems";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -49,16 +51,6 @@ export default function Home() {
   if (session) {
     return (
       <>
-        <div className={styles.profile}>
-          <Avatar alt={session.user.name} src={session.user.image} />
-          <Button variant="contained" onClick={() => signOut()}>
-            Sign out
-          </Button>
-          Welcome! {session.user.name} <br />
-          Signed in as {session.user.email} <br />         
-        </div>
-        
-        
         <div className={styles.container}>
           <Head>
             <title>Cotes</title>
@@ -67,19 +59,35 @@ export default function Home() {
               content="Note Taking App for Programmers"
             />
           </Head>
+          <div className={styles.titleBar}>
+            <Box className={styles.title}>Cotes_</Box>
+            <Box className={styles.utilbar}>add util bar here</Box>
+            <Box className={styles.profile}>
+              <Avatar alt={session.user.name} src={session.user.image} />
+              <Button variant="contained" onClick={() => signOut()}>
+                Sign out
+              </Button>
+              <div />
+              Signed in as <br /> {session.user.name}
+            </Box>
+          </div>{" "}
+          {/* titleBar -- has 3 columns like |[TITLE] | [NAV BAR OR UTILITY BAR] | [SESSION INFO] | */}
 
-          <main className={styles.main}>
-            <div>
-              <h1>{session.user.name}'s Files</h1>
-              <div>
-                {sampleDB.files.map((file) => (
-                  <div key={sampleDB.index}>
-                    <FileItem type={file.type} name={file.name} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </main>
+
+          <div className={styles.titleBar}>
+            <Box className = {styles.sidebar}>
+                <h1>{session.user.name}'s Files</h1>
+                <SideBarItems />
+                <SideBarItems />
+                <SideBarItems />
+
+
+            </Box>
+            <Box className={styles.folderDisp}>add pages inside notebook</Box>
+            <Box className={styles.profile}> right </Box>
+
+          </div>{" "}
+          <main></main>
         </div>
       </>
     );
@@ -90,10 +98,9 @@ export default function Home() {
       <div className={styles.homeTitle}>
         CotesApp <br />
         <Button variant="contained" onClick={() => signIn()}>
-            Sign in
+          Sign in
         </Button>
       </div>
-      
     </>
   );
 }
