@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
 
-export default function Editor() {
+export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
 
   const onClick = () => {
@@ -68,7 +68,7 @@ export default function Editor() {
               Heading
             </Button>
           </Tooltip>
-          <Select>
+          <Select menuColor="lightgrey">
             <MenuItem value="javascript">JavaScript</MenuItem>
             <MenuItem value="python">Python</MenuItem>
           </Select>
