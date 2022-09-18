@@ -25,21 +25,25 @@ import SideBarItems from "../components/SideBarItems";
 export default function Home() {
   const { data: session } = useSession();
   const [data, setData] = useState([]);
-  const [displayData, setDisplaydata] = useState(data);
 
-  const onFileClick = (e) => {
-    console.log(e);
+  const onFileClick = (e) => {};
+
+  const addNotebook = () => {
+    data.files.push({
+      name: "Untitled",
+      type: "notebook",
+      content: "",
+    });
   };
 
   useEffect(() => {
     async function fetchData() {
       if (session) {
         const response = await axios.get("/api/data", {
-          params: { user: session.user.email },
+          params: { user: "mithun@mithunb.com" },
         });
 
         setData(response.data);
-        setDisplaydata(response.data);
       }
     }
 
@@ -59,7 +63,11 @@ export default function Home() {
           </Head>
           <div className={styles.titleBar}>
             <Box className={styles.title}>Cotes_</Box>
-            <Box className={styles.utilbar}>add util bar here</Box>
+            <Box>
+              <div>
+                <button onClick={addNotebook}>Add Notebook</button>
+              </div>
+            </Box>
             <Box className={styles.profile}>
               <Avatar alt={session.user.name} src={session.user.image} />
               <Button variant="contained" onClick={() => signOut()}>
@@ -74,16 +82,17 @@ export default function Home() {
             <Box className={styles.sidebar}>
               <div>
                 <h1>{session.user.name}'s Files</h1>
-                {displayData?.files?.map((file) => (
+                {data?.files?.map((file) => (
                   <div
-                    key={displayData.index}
+                    className={styles.fileItems}
+                    key={data.index}
                     onClick={() => {
-                      onFileClick(file.name);
+                      onFileClick(data.index);
                     }}
                   >
                     <FileItem type={file.type} name={file.name} />
                   </div>
-                ))}{" "}
+                ))}
                 {/* display notebooks here */}
               </div>
             </Box>
