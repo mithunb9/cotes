@@ -22,6 +22,8 @@ import axios from "axios";
 import { Box } from "@mui/system";
 import SideBarItems from "../components/SideBarItems";
 import Editor from "../components/Editor";
+import ButtonGroup from "@mui/material/ButtonGroup";
+
 export default function Home() {
   const { data: session } = useSession();
   const [data, setData] = useState([]);
@@ -51,7 +53,7 @@ export default function Home() {
     }
 
     fetchData();
-  }, [session, data]);
+  }, [session]);
 
   if (session) {
     return (
