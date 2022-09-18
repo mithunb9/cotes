@@ -2705,7 +2705,7 @@
     "@next/swc-win32-ia32-msvc" "12.3.0"
     "@next/swc-win32-x64-msvc" "12.3.0"
 
-"node-fetch@2.6.7":
+"node-fetch@^2.6.1", "node-fetch@2.6.7":
   "integrity" "sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ=="
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.7.tgz"
   "version" "2.6.7"
@@ -2891,6 +2891,13 @@
   "integrity" "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="
   "resolved" "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   "version" "2.3.1"
+
+"piston-client@^1.0.2":
+  "integrity" "sha512-kQreSVVYTk0SFIYm1nCIKQtiodPCAxPjwAvZyWKkW3fMFbn7HONyYWIPoGVx2xXf5SFD29CbgSRCN3k+LP7mCg=="
+  "resolved" "https://registry.npmjs.org/piston-client/-/piston-client-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "node-fetch" "^2.6.1"
 
 "postcss@8.4.14":
   "integrity" "sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig=="

@@ -81,12 +81,12 @@ const addNotebook = async (user) => {
   }
 };
 
-const replaceNotebook = async (user, replacement) => {
-  try {
-    await setDoc(doc(db, "users", user), replacement);
-  } catch (e) {
-    console.error("Error replacing document: ", e);
-  }
-};
+// const replaceNotebook = async (user, replacement) => {
+//   try {
+//     await setDoc(doc(db, "users", user), replacement);
+//   } catch (e) {
+//     console.error("Error replacing document: ", e);
+//   }
+// };
 
-replaceNotebook(bruh, bruh2);
+// replaceNotebook(bruh, bruh2);
