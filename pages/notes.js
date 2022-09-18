@@ -68,7 +68,7 @@ export default function Notes() {
               Heading
             </Button>
           </Tooltip>
-          <Select>
+          <Select menuColor="lightgrey">
             <MenuItem value="javascript">JavaScript</MenuItem>
             <MenuItem value="python">Python</MenuItem>
           </Select>
