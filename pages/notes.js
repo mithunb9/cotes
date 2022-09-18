@@ -36,9 +36,10 @@ export default function Notes() {
   return (
     <div>
       <div>
-        <Stack direction="row" spacing={2}>
+        <Stack className={styles.toprow} direction="row" spacing={2}>
           <Tooltip TransitionComponent={Zoom} color="white" title="Add" arrow>
             <Button
+              className={styles.add}
               color="inherit"
               primary="black"
               variant="outlined"
@@ -48,28 +49,50 @@ export default function Notes() {
             </Button>
           </Tooltip>
           <Tooltip TransitionComponent={Zoom} title="Delete" arrow>
-            <Button color="inherit" variant="outlined" onClick={deleteNote}>
+            <Button
+              className={styles.delete}
+              color="inherit"
+              variant="outlined"
+              onClick={deleteNote}
+            >
               Delete
             </Button>
           </Tooltip>
           <Tooltip TransitionComponent={Zoom} title="Heading" arrow>
-            <Button color="inherit" variant="outlined" onClick={addHeading}>
+            <Button
+              className={styles.heading}
+              color="inherit"
+              variant="outlined"
+              onClick={addHeading}
+            >
               Heading
             </Button>
           </Tooltip>
-          <Select title="Language">
+          <Select>
             <MenuItem value="javascript">JavaScript</MenuItem>
             <MenuItem value="python">Python</MenuItem>
           </Select>
           <Tooltip TransitionComponent={Zoom} title="Code" arrow>
-            <Button color="inherit" variant="outlined" onClick={addCodeblock}>
+            <Button
+              className={styles.code}
+              color="inherit"
+              variant="outlined"
+              onClick={addCodeblock}
+            >
               Code
             </Button>
           </Tooltip>
-          <Button color="inherit" variant="outlined" component="label">
-            Upload
-            <input hidden accept="image/*" multiple type="file" />
-          </Button>
+          <Tooltip TransitionComponent={Zoom} title="Upload" arrow>
+            <Button
+              className={styles.upload}
+              color="inherit"
+              variant="outlined"
+              component="label"
+            >
+              Upload
+              <input hidden accept="image/*" multiple type="file" />
+            </Button>
+          </Tooltip>
         </Stack>
       </div>
 

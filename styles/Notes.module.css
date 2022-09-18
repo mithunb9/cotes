@@ -3,3 +3,46 @@
   width: 100%;
   text-align: center;
 }
+
+.box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 2);
+}
+.toprow {
+  display: flex;
+  background-color: lightgray;
+  overflow: hidden;
+}
+
+.add {
+  display: flex;
+  color: black;
+  overflow: hidden;
+}
+
+.delete {
+  display: flex;
+  color: black;
+  overflow: hidden;
+}
+
+.heading {
+  display: flex;
+  color: black;
+  overflow: hidden;
+}
+
+.code {
+  display: flex;
+  color: black;
+  overflow: hidden;
+}
+
+.upload {
+  display: flex;
+  color: black;
+  overflow: hidden;
+}
