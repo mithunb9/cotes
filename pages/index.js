@@ -29,7 +29,13 @@ export default function Home() {
   const onFileClick = (e) => {};
 
   const addNotebook = () => {
-    const newData = data.files.push({ name: "Untitled", id: "123", pages: [] });
+    const newData = data.files.push({
+      name: "Untitled",
+      type: "notebook",
+      pages: [],
+    });
+
+    axios.post("/api/files", newData);
     setData(newData);
   };
 
@@ -45,7 +51,7 @@ export default function Home() {
     }
 
     fetchData();
-  }, [session]);
+  }, [session, data]);
 
   if (session) {
     return (
