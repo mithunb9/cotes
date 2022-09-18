@@ -5,7 +5,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { Tooltip } from "@mui/material";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Zoom from "@mui/material/Zoom";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
@@ -36,7 +37,7 @@ export default function Notes() {
     <div>
       <div>
         <Stack direction="row" spacing={2}>
-          <Tooltip title="Add" arrow>
+          <Tooltip TransitionComponent={Zoom} color="white" title="Add" arrow>
             <Button
               color="inherit"
               primary="black"
@@ -46,17 +47,21 @@ export default function Notes() {
               Add
             </Button>
           </Tooltip>
-          <Tooltip title="Delete" arrow>
+          <Tooltip TransitionComponent={Zoom} title="Delete" arrow>
             <Button color="inherit" variant="outlined" onClick={deleteNote}>
               Delete
             </Button>
           </Tooltip>
-          <Tooltip title="Heading" arrow>
+          <Tooltip TransitionComponent={Zoom} title="Heading" arrow>
             <Button color="inherit" variant="outlined" onClick={addHeading}>
               Heading
             </Button>
           </Tooltip>
-          <Tooltip title="Code" arrow>
+          <Select title="Language">
+            <MenuItem value="javascript">JavaScript</MenuItem>
+            <MenuItem value="python">Python</MenuItem>
+          </Select>
+          <Tooltip TransitionComponent={Zoom} title="Code" arrow>
             <Button color="inherit" variant="outlined" onClick={addCodeblock}>
               Code
             </Button>
@@ -70,17 +75,6 @@ export default function Notes() {
             <NoteBlock type={data.type} content={data.content} />
           </div>
         ))}
-
-        <div>
-          <button onClick={onClick}>Add</button>
-          <button onClick={deleteNote}>Delete</button>
-          <button onClick={addHeading}>Heading</button>
-          <Select>
-            <MenuItem value="javascript">JavaScript</MenuItem>
-            <MenuItem value="python">Python</MenuItem>
-          </Select>
-          <button onClick={addCodeblock}>Code</button>
-        </div>
       </div>
     </div>
   );
