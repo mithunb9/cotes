@@ -78,7 +78,7 @@ const updateNotebook = async (user, userPage) => {
   }
 };
 
-const getNotebook = async (user, userPage) => {
+const getNotebook = async (user) => {
   const docRef = doc(db, "users", user);
   const docSnap = await getDoc(docRef);
 
