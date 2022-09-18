@@ -69,9 +69,16 @@ const { collection, addDoc } = require("firebase/firestore");
 const { doc, deleteDoc, setDoc } = require("firebase/firestore");
 
 const updateNotebook = async (user, userPage) => {
-  console.log(user);
+  console.log("REACHED");
+
   try {
-    const docRef = await setDoc(doc(db, "users", user), userPage);
+    const data = await getNotebook(user);
+
+    const docRef = await setDoc(doc(db, "users", user), {
+      files: [...data.files, userPage],
+    });
+    console.log(user);
+    console.log(userPage);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);

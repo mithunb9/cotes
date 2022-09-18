@@ -11,11 +11,11 @@ export default async function handler(req, res) {
       res.status(200).json(data);
     }
   } else if (req.method === "POST") {
-    if (req.query.user === undefined) {
-      res.status(200).json({ error: "User not found" });
-    } else {
-      await updateNotebook(req.query.user, req.body);
-      res.status(200).json({ success: true });
-    }
+    const data = await updateNotebook(req.query.user, {
+      name: req.query.name,
+      pages: [],
+      type: "notebook",
+    });
+    res.status(200).json({ success: true });
   }
 }

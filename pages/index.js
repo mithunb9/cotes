@@ -5,7 +5,23 @@ import React, { Component, useEffect } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Button, Icon, IconButton, Avatar } from "@mui/material";
+import {
+  Button,
+  Icon,
+  IconButton,
+  Avatar,
+  ButtonGroup,
+  handleOpen,
+  handleClose,
+  Typography,
+  Modal,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
 import { firestore } from "../firebase/firebase";
 import {
   collection,
@@ -22,22 +38,36 @@ import axios from "axios";
 import { Box } from "@mui/system";
 import SideBarItems from "../components/SideBarItems";
 import Editor from "../components/Editor";
-import ButtonGroup from "@mui/material/ButtonGroup";
 
 export default function Home() {
   const { data: session } = useSession();
   const [data, setData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [newNotebookName, setNewNotebookName] = useState("");
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    console.log(newNotebookName);
+    addNotebook();
+    setOpen(false);
+  };
 
   const onFileClick = (e) => {};
 
   const addNotebook = () => {
     const newData = data.files.push({
-      name: "Untitled",
+      name: newNotebookName,
       type: "notebook",
       pages: [],
     });
 
-    axios.post("/api/files", newData);
+    axios.post(
+      "/api/data?user=" + session.user.email + "&name=" + newNotebookName
+    );
+    window.location.reload(false);
     setData(newData);
   };
 
@@ -45,7 +75,7 @@ export default function Home() {
     async function fetchData() {
       if (session) {
         const response = await axios.get("/api/data", {
-          params: { user: "mithun@mithunb.com" },
+          params: { user: session.user.email },
         });
 
         setData(response.data);
@@ -73,6 +103,30 @@ export default function Home() {
                 <Editor />
               </div>
             </Box>
+            <div>
+              <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>New notebook</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Enter a name for your notebook.
+                  </DialogContentText>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Name"
+                    fullWidth
+                    variant="standard"
+                    value={newNotebookName}
+                    onChange={(e) => setNewNotebookName(e.target.value)}
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Add</Button>
+                </DialogActions>
+              </Dialog>
+            </div>
+
             <Box className={styles.profile}>
               <Avatar alt={session.user.name} src={session.user.image} />
               <Button variant="contained" onClick={() => signOut()}>
