@@ -49,15 +49,6 @@ export default function Home() {
   if (session) {
     return (
       <>
-        <div className={styles.profile}>
-          <Avatar alt={session.user.name} src={session.user.image} />
-          <Button variant="contained" onClick={() => signOut()}>
-            Sign out
-          </Button>
-          Welcome! {session.user.name} <br />
-          Signed in as {session.user.email} <br />
-        </div>
-
         <div className={styles.container}>
           <Head>
             <title>Cotes</title>
@@ -79,24 +70,17 @@ export default function Home() {
             </Box>
           </div>{" "}
           {/* titleBar -- has 3 columns like |[TITLE] | [NAV BAR OR UTILITY BAR] | [SESSION INFO] | */}
-          <main className={styles.main}>
-            <div>
-              <h1>{session.user.name}'s Files</h1>
+          <div className={styles.titleBar}>
+            <Box className={styles.sidebar}>
               <div>
+                <h1>{session.user.name}'s Files</h1>
                 {displayData?.files?.map((file) => (
                   <div key={displayData.index} onClick={onFileClick(file.name)}>
                     <FileItem type={file.type} name={file.name} />
                   </div>
-                ))}
+                ))}{" "}
+                {/* display notebooks here */}
               </div>
-            </div>
-          </main>
-          <div className={styles.titleBar}>
-            <Box className={styles.sidebar}>
-              <h1>{session.user.name}'s Files</h1>
-              <SideBarItems />
-              <SideBarItems />
-              <SideBarItems />
             </Box>
             <Box className={styles.folderDisp}>add pages inside notebook</Box>
             <Box className={styles.profile}> right </Box>
