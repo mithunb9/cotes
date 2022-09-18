@@ -25,14 +25,8 @@ import SideBarItems from "../components/SideBarItems";
 export default function Home() {
   const { data: session } = useSession();
   const [data, setData] = useState([]);
-  const [displayData, setDisplaydata] = useState(data);
 
-  const onFileClick = (e) => {
-    if (data === "BUTTON") {
-      console.log("button clicked");
-      return;
-    }
-  };
+  const onFileClick = (e) => {};
 
   const addNotebook = () => {
     data.files.push({
@@ -42,8 +36,6 @@ export default function Home() {
     });
   };
 
-  const addFolder = () => {};
-
   useEffect(() => {
     async function fetchData() {
       if (session) {
@@ -52,7 +44,6 @@ export default function Home() {
         });
 
         setData(response.data);
-        setDisplaydata(response.data);
       }
     }
 
@@ -74,7 +65,6 @@ export default function Home() {
             <Box className={styles.title}>Cotes_</Box>
             <Box>
               <div>
-                <button onClick={addFolder}>Add Folder</button>
                 <button onClick={addNotebook}>Add Notebook</button>
               </div>
             </Box>
@@ -92,12 +82,12 @@ export default function Home() {
             <Box className={styles.sidebar}>
               <div>
                 <h1>{session.user.name}'s Files</h1>
-                {displayData?.files?.map((file) => (
+                {data?.files?.map((file) => (
                   <div
                     className={styles.fileItems}
-                    key={displayData.index}
+                    key={data.index}
                     onClick={() => {
-                      onFileClick(displayData.index);
+                      onFileClick(data.index);
                     }}
                   >
                     <FileItem type={file.type} name={file.name} />
