@@ -31,11 +31,8 @@ export default function Home() {
   };
 
   const addNotebook = () => {
-    data.files.push({
-      name: "Untitled",
-      type: "notebook",
-      content: "",
-    });
+    const newData = data.files.push({ name: "Untitled", id: "123", pages: [] });
+    setData(newData);
   };
 
   useEffect(() => {
@@ -84,15 +81,16 @@ export default function Home() {
             <Box className={styles.sidebar}>
               <div>
                 <h1>{session.user.name}'s Files</h1>
-                <div
-                  className={styles.fileItems}
-                  key={data.index}
-                  onClick={() => {
-                    onFileClick(data.index);
-                  }}
-                >
-                  <FileItem type={file.type} name={file.name} />
-                </div>
+                {data?.files?.map((file, index) => (
+                  <div
+                    className={styles.fileItems}
+                    key={data.index}
+                    onClick={() => {
+                      onFileClick(index);
+                    }}
+                  >
+                    <FileItem type={file.type} name={file.name} />
+                  </div>
                 ))}
                 {/* display notebooks here */}
               </div>
