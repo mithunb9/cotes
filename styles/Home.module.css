@@ -146,3 +146,9 @@
   margin-left: 3%;
   text-align: center;
 }
+
+.editorPage {
+  border-color: red;
+  border: 2px solid;
+  margin-top: 5%;
+}

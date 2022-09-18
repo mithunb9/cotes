@@ -5,7 +5,7 @@ import React, { Component, useEffect } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Button, Icon, IconButton, Avatar, ButtonGroup } from "@mui/material";
+import { Button, Icon, IconButton, Avatar } from "@mui/material";
 import { firestore } from "../firebase/firebase";
 import {
   collection,
@@ -70,12 +70,7 @@ export default function Home() {
             <Box className={styles.title}>Cotes_</Box>
             <Box>
               <div className={styles.utilButtons}>
-                <ButtonGroup
-                  variant="contained"
-                  aria-label="outlined primary button group"
-                >
-                  <Button onClick={addNotebook}>Add Notebook</Button>
-                </ButtonGroup>
+                <Editor />
               </div>
             </Box>
             <Box className={styles.profile}>
@@ -101,14 +96,18 @@ export default function Home() {
                     }}
                   >
                     <FileItem type={file.type} name={file.name} />
+                    <ButtonGroup
+                      variant="contained"
+                      aria-label="outlined primary button group"
+                    >
+                      <Button onClick={addNotebook}>Add Notebook</Button>
+                    </ButtonGroup>
                   </div>
                 ))}
                 {/* display notebooks here */}
               </div>
             </Box>
-            <Box className={styles.folderDisp}>
-              <Editor />
-            </Box>
+            <Box className={styles.editorPage}></Box>
             <Box className={styles.profile}></Box>
           </div>
         </div>
