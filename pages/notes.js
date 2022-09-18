@@ -66,6 +66,10 @@ export default function Notes() {
               Code
             </Button>
           </Tooltip>
+          <Button color="inherit" variant="outlined" component="label">
+            Upload
+            <input hidden accept="image/*" multiple type="file" />
+          </Button>
         </Stack>
       </div>
 
