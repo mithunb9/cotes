@@ -5,7 +5,23 @@ import React, { Component, useEffect } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Button, Icon, IconButton, Avatar, ButtonGroup } from "@mui/material";
+import {
+  Button,
+  Icon,
+  IconButton,
+  Avatar,
+  ButtonGroup,
+  handleOpen,
+  handleClose,
+  Typography,
+  Modal,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
 import { firestore } from "../firebase/firebase";
 import {
   collection,
@@ -26,12 +42,24 @@ import Editor from "../components/Editor";
 export default function Home() {
   const { data: session } = useSession();
   const [data, setData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [newNotebookName, setNewNotebookName] = useState("");
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    console.log(newNotebookName);
+    addNotebook();
+    setOpen(false);
+  };
 
   const onFileClick = (e) => {};
 
   const addNotebook = () => {
     const newData = data.files.push({
-      name: "Untitled",
+      name: newNotebookName,
       type: "notebook",
       pages: [],
     });
@@ -74,10 +102,33 @@ export default function Home() {
                   variant="contained"
                   aria-label="outlined primary button group"
                 >
-                  <Button onClick={addNotebook}>Add Notebook</Button>
+                  <Button onClick={handleClickOpen}>Add Notebook</Button>
                 </ButtonGroup>
               </div>
             </Box>
+            <div>
+              <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>New notebook</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Enter a name for your notebook.
+                  </DialogContentText>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Name"
+                    fullWidth
+                    variant="standard"
+                    onChange={(e) => setNewNotebookName(e.target.value)}
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Add</Button>
+                </DialogActions>
+              </Dialog>
+            </div>
+
             <Box className={styles.profile}>
               <Avatar alt={session.user.name} src={session.user.image} />
               <Button variant="contained" onClick={() => signOut()}>
