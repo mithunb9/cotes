@@ -11,7 +11,7 @@ export default function NoteBlock(props) {
 
   const runCode = async () => {
     const request = await axios.post(
-      "http://localhost:3000/api/engine/run?language=javascript&code=" + value
+      "/api/engine/run?language=javascript&code=" + value
     );
 
     setOutput(request.data.output);
