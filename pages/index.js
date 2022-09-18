@@ -45,6 +45,7 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const [newNotebookName, setNewNotebookName] = useState("");
   const [focus, setFocus] = useState(false);
+  const [openField, setOpenField] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -62,6 +63,7 @@ export default function Home() {
 
   const onFileClick = (e) => {
     setFocus(true);
+    setOpenField(data.files[e].name);
   };
 
   const addNotebook = () => {
@@ -152,7 +154,7 @@ export default function Home() {
           {/* titleBar -- has 3 columns like |[TITLE] | [NAV BAR OR UTILITY BAR] | [SESSION INFO] | */}
 
           {focus ? (
-            <Editor />
+            <Editor name={setOpenField} data={data} />
           ) : (
             <div className={styles.sidebar}>
               <Box>

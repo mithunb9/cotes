@@ -9,11 +9,16 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
 import axios from "axios";
 
-export default function Notes() {
+export default function Notes(props) {
+  console.log(props.data);
   const [noteBlocks, setNoteBlocks] = useState([]);
 
   const save = () => {
     axios.post("/api/save/", { noteBlocks });
+  };
+
+  const onEffect = () => {
+    setNoteBlocks(props.data.files[props.name].pages);
   };
 
   const onClick = () => {
@@ -102,7 +107,7 @@ export default function Notes() {
       </div>
 
       <div>
-        {noteBlocks.map((data) => (
+        {noteBlocks?.map((data) => (
           <div className={styles.notes} key={noteBlocks.index}>
             <NoteBlock type={data.type} content={data.content} />
           </div>
