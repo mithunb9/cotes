@@ -154,8 +154,8 @@ export default function Home() {
           {focus ? (
             <Editor />
           ) : (
-            <div className={styles.titleBar}>
-              <Box className={styles.sidebar}>
+            <div className={styles.sidebar}>
+              <Box>
                 <div>
                   <h1>{session.user.name}'s Files</h1>
                   {data?.files?.map((file, index) => (
