@@ -28,8 +28,10 @@ export default function Home() {
   const [displayData, setDisplaydata] = useState(data);
 
   const onFileClick = (e) => {
-    console.log(e);
-    setDisplaydata(data.files[0].content);
+    if (data === "BUTTON") {
+      console.log("button clicked");
+      return;
+    }
   };
 
   const addNotebook = () => {
@@ -95,7 +97,7 @@ export default function Home() {
                     className={styles.fileItems}
                     key={displayData.index}
                     onClick={() => {
-                      onFileClick(file.name);
+                      onFileClick(displayData.index);
                     }}
                   >
                     <FileItem type={file.type} name={file.name} />
