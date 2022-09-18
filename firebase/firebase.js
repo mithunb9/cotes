@@ -49,6 +49,7 @@ const bruh2 = {
 const { initializeApp } = require("firebase/app");
 const { getDatabase } = require("firebase/database");
 const { getFirestore } = require("firebase/firestore");
+const { useSession } = require("next-auth/react");
 
 // if (process.env.NODE_ENV !== "production") {
 //   require("dotenv").config();
@@ -63,7 +64,6 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
-
 console.log("Firebase initialized");
 const app = initializeApp(firebaseConfig);
 
@@ -74,19 +74,19 @@ const { doc, deleteDoc, setDoc } = require("firebase/firestore");
 
 const addNotebook = async (user) => {
   try {
-    const docRef = await addDoc(collection(db, "users"), user);
+    const docRef = await addDoc(collection(db, "users"), bruh);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
 
-const replaceNotebook = async (user, replacement) => {
-  try {
-    await setDoc(doc(db, "users", user), replacement);
-  } catch (e) {
-    console.error("Error replacing document: ", e);
-  }
-};
+//module.exports(addPost);
+//addNotebook(bruh);
+//addNotebook(bruh2);
+const delNotebook = async () => {
+      await deleteDoc(doc(db, "users", "yjOt1A5ieYZIx0UpWhcA"));
+    };
 
-replaceNotebook(bruh, bruh2);
+    
+delNotebook();
