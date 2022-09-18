@@ -1,5 +1,4 @@
 const bruh = {
-  user: "pranavbalu",
   files: [
     {
       type: "folder",
@@ -48,12 +47,8 @@ const bruh2 = {
 
 const { initializeApp } = require("firebase/app");
 const { getDatabase } = require("firebase/database");
-const { getFirestore } = require("firebase/firestore");
+const { getFirestore, getDoc } = require("firebase/firestore");
 const { useSession } = require("next-auth/react");
-
-// if (process.env.NODE_ENV !== "production") {
-//   require("dotenv").config();
-// }
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -64,28 +59,37 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
+
 console.log("Firebase initialized");
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-const { collection, addDoc, getDocs } = require("firebase/firestore");
+const { collection, addDoc } = require("firebase/firestore");
 const { doc, deleteDoc, setDoc } = require("firebase/firestore");
 
-const addNotebook = async (user) => {
+const updateNotebook = async (user, userPage) => {
+  console.log(user);
   try {
-    const docRef = await addDoc(collection(db, "users"), bruh);
+    const docRef = await setDoc(doc(db, "users", user), userPage);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
 
-//module.exports(addPost);
-//addNotebook(bruh);
-//addNotebook(bruh2);
-const delNotebook = async () => {
-  await deleteDoc(doc(db, "users", "yjOt1A5ieYZIx0UpWhcA"));
+const getNotebook = async (user, userPage) => {
+  const docRef = doc(db, "users", user);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    return { ...docSnap.data(), user: user };
+  } else {
+    // doc.data() will be undefined in this case
+    return { user: user, files: [] };
+  }
 };
 
-delNotebook();
+getNotebook("mithun@mithunb.com");
+module.exports = { updateNotebook, getNotebook };
