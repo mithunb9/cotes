@@ -22,7 +22,6 @@ import axios from "axios";
 import { Box } from "@mui/system";
 import SideBarItems from "../components/SideBarItems";
 import Editor from "../components/Editor";
-import ButtonGroup from "@mui/material/ButtonGroup";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -37,7 +36,8 @@ export default function Home() {
       pages: [],
     });
 
-    axios.post("/api/files", newData);
+    axios.post("/api/data?user=mithun@mithunb.com&name=asxs");
+    window.location.reload(false);
     setData(newData);
   };
 
