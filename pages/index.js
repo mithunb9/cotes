@@ -29,13 +29,14 @@ export default function Home() {
 
   const onFileClick = (e) => {
     console.log(e);
+    setDisplaydata[data.files];
   };
 
   useEffect(() => {
     async function fetchData() {
       if (session) {
         const response = await axios.get("/api/data", {
-          params: { user: session.user.email },
+          params: { user: "mithun@mithunb.com" },
         });
 
         setData(response.data);
@@ -83,7 +84,7 @@ export default function Home() {
                   >
                     <FileItem type={file.type} name={file.name} />
                   </div>
-                ))}{" "}
+                ))}
                 {/* display notebooks here */}
               </div>
             </Box>
