@@ -64,7 +64,9 @@ export default function Home() {
       pages: [],
     });
 
-    axios.post("/api/data?user=mithun@mithunb.com&name=asxs");
+    axios.post(
+      "/api/data?user=" + session.user.email + "&name=" + newNotebookName
+    );
     window.location.reload(false);
     setData(newData);
   };
@@ -73,7 +75,7 @@ export default function Home() {
     async function fetchData() {
       if (session) {
         const response = await axios.get("/api/data", {
-          params: { user: "mithun@mithunb.com" },
+          params: { user: session.user.email },
         });
 
         setData(response.data);
@@ -120,6 +122,7 @@ export default function Home() {
                     label="Name"
                     fullWidth
                     variant="standard"
+                    value={newNotebookName}
                     onChange={(e) => setNewNotebookName(e.target.value)}
                   />
                 </DialogContent>
