@@ -13,7 +13,7 @@ export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
 
   const save = () => {
-    axios.post("/api/notes/save", { noteBlocks });
+    axios.post("/api/save/", { noteBlocks });
   };
 
   const onClick = () => {
