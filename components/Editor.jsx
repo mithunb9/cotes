@@ -7,9 +7,14 @@ import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
+import axios from "axios";
 
 export default function Notes() {
   const [noteBlocks, setNoteBlocks] = useState([]);
+
+  const save = () => {
+    axios.post("/api/notes/save", { noteBlocks });
+  };
 
   const onClick = () => {
     setNoteBlocks([...noteBlocks, { type: "text", content: "Sample Text" }]);
@@ -82,15 +87,15 @@ export default function Notes() {
               Code
             </Button>
           </Tooltip>
-          <Tooltip TransitionComponent={Zoom} title="Upload" arrow>
+          <Tooltip TransitionComponent={Zoom} title="Save" arrow>
             <Button
               className={styles.upload}
               color="inherit"
               variant="outlined"
               component="label"
+              onClick={save}
             >
-              Upload
-              <input hidden accept="image/*" multiple type="file" />
+              Save
             </Button>
           </Tooltip>
         </Stack>

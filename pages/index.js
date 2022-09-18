@@ -50,6 +50,10 @@ export default function Home() {
     setOpen(true);
   };
 
+  const onHomeClick = () => {
+    setFocus(false);
+  };
+
   const handleClose = () => {
     console.log(newNotebookName);
     addNotebook();
@@ -107,6 +111,7 @@ export default function Home() {
                   variant="contained"
                   aria-label="outlined primary button group"
                 >
+                  <Button onClick={onHomeClick}>Home</Button>
                   <Button onClick={handleClickOpen}>Add Notebook</Button>
                 </ButtonGroup>
               </div>
