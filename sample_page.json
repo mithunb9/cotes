@@ -1,0 +1,24 @@
+{
+  "user": "",
+  "files": [
+    {
+      "type": "folder",
+      "name": "Mithun",
+      "contents": []
+    },
+    {
+      "type": "notebook",
+      "name": "Bruh",
+      "pages": [
+        {
+          "title": "bruh",
+          "content": [
+            { "type": "heading", "content": "Sample Heading" },
+            { "type": "heading", "content": "Sample Heading" }
+          ]
+        }
+      ]
+    },
+    {}
+  ]
+}

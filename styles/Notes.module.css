@@ -3,3 +3,52 @@
   width: 100%;
   text-align: center;
 }
+
+.box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 2);
+}
+.toprow {
+  display: flex;
+  background: linear-gradient(to left top, rgb(50, 46, 59), #1e212b);
+  overflow: hidden;
+}
+
+.add {
+  display: flex;
+  color: lightgrey;
+  overflow: hidden;
+}
+
+.delete {
+  display: flex;
+  color: lightgrey;
+  overflow: hidden;
+}
+
+.heading {
+  display: flex;
+  color: lightgrey;
+  overflow: hidden;
+}
+
+.code {
+  display: flex;
+  color: lightgrey;
+  overflow: hidden;
+}
+
+.upload {
+  display: flex;
+  color: lightgrey;
+  overflow: hidden;
+}
+
+.select {
+  display: flex;
+  color: lightgrey;
+  overflow: hidden;
+}

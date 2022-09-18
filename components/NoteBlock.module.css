@@ -3,12 +3,18 @@
   height: auto;
   padding: 12px 20px;
   box-sizing: border-box;
-  border: 2px solid #ccc;
+  border: none;
   border-radius: 4px;
-  background-color: #f8f8f8;
-  color: black;
+  background-color: #1e212b;
+  color: white;
   resize: none;
   overflow: hidden;
+}
+
+.codearea {
+  width: 50%;
+  margin: auto;
+  text-align: left;
 }
 
 #text {
