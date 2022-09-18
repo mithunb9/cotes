@@ -29,8 +29,18 @@ export default function Home() {
 
   const onFileClick = (e) => {
     console.log(e);
-    setDisplaydata[data.files];
+    setDisplaydata(data.files[0].content);
   };
+
+  const addNotebook = () => {
+    data.files.push({
+      name: "Untitled",
+      type: "notebook",
+      content: "",
+    });
+  };
+
+  const addFolder = () => {};
 
   useEffect(() => {
     async function fetchData() {
@@ -60,7 +70,10 @@ export default function Home() {
           </Head>
           <div className={styles.titleBar}>
             <Box className={styles.title}>Cotes_</Box>
-            <Box className={styles.utilbar}>add util bar here</Box>
+            <Box className={styles.utilbar}>
+              <button onClick={addFolder}>Add Folder</button>
+              <button onClick={addNotebook}>Add Notebook</button>
+            </Box>
             <Box className={styles.profile}>
               <Avatar alt={session.user.name} src={session.user.image} />
               <Button variant="contained" onClick={() => signOut()}>
@@ -77,6 +90,7 @@ export default function Home() {
                 <h1>{session.user.name}'s Files</h1>
                 {displayData?.files?.map((file) => (
                   <div
+                    className={styles.fileItems}
                     key={displayData.index}
                     onClick={() => {
                       onFileClick(file.name);

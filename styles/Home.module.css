@@ -1,6 +1,5 @@
 .container {
   padding: 0 2rem;
-  
 }
 
 .main {
@@ -47,7 +46,6 @@
   font-size: 4rem;
   align-items: flex-start;
   border: 2px solid;
-
 }
 
 .title,
@@ -98,7 +96,6 @@
   }
 }
 
-
 .homeTitle {
   margin: 0;
   line-height: 1.15;
@@ -118,7 +115,7 @@
   gap: 0.5rem;
 }
 
-.titleBar{
+.titleBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -128,10 +125,9 @@
   margin-top: 1%;
   margin-left: 3%;
   text-align: center;
-
 }
 
-.utilbar{
+.utilbar {
   display: flex;
   margin-top: 2rem;
   line-height: 1.15;
@@ -139,21 +135,14 @@
   align-items: flex-start;
   border: 2px solid;
 }
-.sideBar{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-    line-height: 1.15;
-    margin-top: 1%;
-    margin-left: 3%;
-    text-align: center;
-  
-  }
-
-
-
-
-
+.sideBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  line-height: 1.15;
+  margin-top: 1%;
+  margin-left: 3%;
+  text-align: center;
+}
