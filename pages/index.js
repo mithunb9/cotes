@@ -21,14 +21,12 @@ import FileItem from "../components/FileItem";
 import axios from "axios";
 import { Box } from "@mui/system";
 import SideBarItems from "../components/SideBarItems";
-
+import Editor from "../components/Editor";
 export default function Home() {
   const { data: session } = useSession();
   const [data, setData] = useState([]);
 
-  const onFileClick = (e) => {
-    console.log(e);
-  };
+  const onFileClick = (e) => {};
 
   const addNotebook = () => {
     const newData = data.files.push({ name: "Untitled", id: "123", pages: [] });
@@ -75,7 +73,7 @@ export default function Home() {
               <div />
               Signed in as <br /> {session.user.name}
             </Box>
-          </div>{" "}
+          </div>
           {/* titleBar -- has 3 columns like |[TITLE] | [NAV BAR OR UTILITY BAR] | [SESSION INFO] | */}
           <div className={styles.titleBar}>
             <Box className={styles.sidebar}>
@@ -95,7 +93,9 @@ export default function Home() {
                 {/* display notebooks here */}
               </div>
             </Box>
-            <Box className={styles.folderDisp}>add pages inside notebook</Box>
+            <Box className={styles.folderDisp}>
+              <Editor />
+            </Box>
             <Box className={styles.profile}> right </Box>
           </div>
         </div>
