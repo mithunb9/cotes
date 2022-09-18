@@ -44,6 +44,7 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [newNotebookName, setNewNotebookName] = useState("");
+  const [focus, setFocus] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -55,7 +56,9 @@ export default function Home() {
     setOpen(false);
   };
 
-  const onFileClick = (e) => {};
+  const onFileClick = (e) => {
+    setFocus(true);
+  };
 
   const addNotebook = () => {
     const newData = data.files.push({
@@ -142,29 +145,32 @@ export default function Home() {
             </Box>
           </div>
           {/* titleBar -- has 3 columns like |[TITLE] | [NAV BAR OR UTILITY BAR] | [SESSION INFO] | */}
-          <div className={styles.titleBar}>
-            <Box className={styles.sidebar}>
-              <div>
-                <h1>{session.user.name}'s Files</h1>
-                {data?.files?.map((file, index) => (
-                  <div
-                    className={styles.fileItems}
-                    key={data.index}
-                    onClick={() => {
-                      onFileClick(index);
-                    }}
-                  >
-                    <FileItem type={file.type} name={file.name} />
-                  </div>
-                ))}
-                {/* display notebooks here */}
-              </div>
-            </Box>
-            <Box className={styles.folderDisp}>
-              <Editor />
-            </Box>
-            <Box className={styles.profile}></Box>
-          </div>
+
+          {focus ? (
+            <Editor />
+          ) : (
+            <div className={styles.titleBar}>
+              <Box className={styles.sidebar}>
+                <div>
+                  <h1>{session.user.name}'s Files</h1>
+                  {data?.files?.map((file, index) => (
+                    <div
+                      className={styles.fileItems}
+                      key={data.index}
+                      onClick={() => {
+                        onFileClick(index);
+                      }}
+                    >
+                      <FileItem type={file.type} name={file.name} />
+                    </div>
+                  ))}
+                  {/* display notebooks here */}
+                </div>
+              </Box>
+              <Box className={styles.folderDisp}></Box>
+              <Box className={styles.profile}></Box>
+            </div>
+          )}
         </div>
       </>
     );
