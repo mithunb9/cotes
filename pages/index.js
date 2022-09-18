@@ -70,9 +70,11 @@ export default function Home() {
           </Head>
           <div className={styles.titleBar}>
             <Box className={styles.title}>Cotes_</Box>
-            <Box className={styles.utilbar}>
-              <button onClick={addFolder}>Add Folder</button>
-              <button onClick={addNotebook}>Add Notebook</button>
+            <Box>
+              <div>
+                <button onClick={addFolder}>Add Folder</button>
+                <button onClick={addNotebook}>Add Notebook</button>
+              </div>
             </Box>
             <Box className={styles.profile}>
               <Avatar alt={session.user.name} src={session.user.image} />
