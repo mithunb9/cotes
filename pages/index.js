@@ -26,14 +26,13 @@ export default function Home() {
   const { data: session } = useSession();
   const [data, setData] = useState([]);
 
-  const onFileClick = (e) => {};
+  const onFileClick = (e) => {
+    console.log(e);
+  };
 
   const addNotebook = () => {
-    data.files.push({
-      name: "Untitled",
-      type: "notebook",
-      content: "",
-    });
+    const newData = data.files.push({ name: "Untitled", id: "123", pages: [] });
+    setData(newData);
   };
 
   useEffect(() => {
@@ -82,12 +81,12 @@ export default function Home() {
             <Box className={styles.sidebar}>
               <div>
                 <h1>{session.user.name}'s Files</h1>
-                {data?.files?.map((file) => (
+                {data?.files?.map((file, index) => (
                   <div
                     className={styles.fileItems}
                     key={data.index}
                     onClick={() => {
-                      onFileClick(data.index);
+                      onFileClick(index);
                     }}
                   >
                     <FileItem type={file.type} name={file.name} />
