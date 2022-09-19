@@ -17,37 +17,48 @@ console.log("Firebase initialized");
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+type category = "heading" | "paragraph" | "javascript" | "python";
+type type = "notebook" | "folder";
+
 interface User {
   user: string;
-  files: string[];
+  files: File[];
 }
 
 interface File {
   name: string;
-  contents: string[];
-  type: "notebook" | "folder";
+  contents: Block[];
+  type: type;
 }
 
 interface Block {
-  coten: string;
-  files: string[];
+  type: "text" | "code";
+  content: string;
+  category: category;
 }
 
-const updateNotebook = async (user, userPage) => {
+const updateUserFiles = async (
+  user: string,
+  userPage: File
+): Promise<boolean> => {
   try {
-    const data = await getNotebook(user);
+    const data = await getUser(user);
 
     const docRef = await setDoc(doc(db, "users", user), {
       files: [...data.files, userPage],
     });
 
     console.log("Document written with ID: ", docRef.id);
+
+    return true;
   } catch (e) {
     console.error("Error adding document: ", e);
+
+    return false;
   }
 };
 
-const getNotebook = async (user) => {
+const getUser = async (user): Promise<User> => {
   const docRef = doc(db, "users", user);
   const docSnap = await getDoc(docRef);
 
@@ -58,4 +69,4 @@ const getNotebook = async (user) => {
   }
 };
 
-export { updateNotebook, getNotebook };
+export { updateUserFiles, getUser };
