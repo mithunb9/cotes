@@ -11,10 +11,12 @@
   color: white;
   border: 1px solid rgba(0, 0, 0, 2);
 }
+
 .toprow {
   display: flex;
   background: linear-gradient(to left top, rgb(50, 46, 59), #1e212b);
   overflow: hidden;
+  margin-top: 2rem;
 }
 
 .add {
