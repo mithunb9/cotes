@@ -11,7 +11,7 @@ export default function NoteBlock(props) {
 
   const runCode = async () => {
     const request = await axios.post(
-      "http://localhost:3000/api/engine/run?language=javascript&code=" + value
+      "/api/engine/run?language=javascript&code=" + value
     );
 
     setOutput(request.data.output);
@@ -41,8 +41,10 @@ export default function NoteBlock(props) {
           extensions={[javascript({ jsx: true })]}
           onChange={onChange}
         />
+        <div>
+          <p>{output}</p>
+        </div>
         <button onClick={runCode}>Run</button>
-        <p>{output}</p>
       </div>
     );
   }

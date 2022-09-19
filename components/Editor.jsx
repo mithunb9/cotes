@@ -78,10 +78,7 @@ export default function Notes(props) {
               Heading
             </Button>
           </Tooltip>
-          <Select menuColor="lightgrey">
-            <MenuItem value="javascript">JavaScript</MenuItem>
-            <MenuItem value="python">Python</MenuItem>
-          </Select>
+
           <Tooltip TransitionComponent={Zoom} title="Code" arrow>
             <Button
               className={styles.code}
