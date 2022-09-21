@@ -1,4 +1,4 @@
-const { initializeApp } = require("firebase/app");
+import { initializeApp } from "firebase/app";
 const { getFirestore, getDoc } = require("firebase/firestore");
 const { doc, setDoc } = require("firebase/firestore");
 
@@ -18,11 +18,12 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 type category = "heading" | "paragraph" | "javascript" | "python";
-type type = "notebook" | "folder";
+type type = "file" | "folder";
 
 interface User {
   user: string;
-  files: File[];
+  name: string;
+  files: string[];
 }
 
 interface File {
@@ -65,8 +66,8 @@ const getUser = async (user): Promise<User> => {
   if (docSnap.exists()) {
     return { ...docSnap.data(), user: user };
   } else {
-    return { user: user, files: [] };
+    return { user: user, name: user, files: [] };
   }
 };
 
-export { updateUserFiles, getUser };
+export { db, updateUserFiles, getUser };

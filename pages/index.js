@@ -41,7 +41,7 @@ import Editor from "../components/Editor";
 
 export default function Home() {
   const { data: session } = useSession();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
   const [newNotebookName, setNewNotebookName] = useState("");
   const [focus, setFocus] = useState(false);
@@ -56,14 +56,18 @@ export default function Home() {
   };
 
   const handleClose = () => {
-    console.log(newNotebookName);
     addNotebook();
     setOpen(false);
   };
 
   const onFileClick = (e) => {
     setFocus(true);
-    setOpenField(data.files[e].name);
+    setOpenField(data?.files[e].name);
+  };
+
+  const onUserSignOut = () => {
+    data = null;
+    signOut();
   };
 
   const addNotebook = () => {
@@ -74,16 +78,20 @@ export default function Home() {
     });
 
     axios.post(
-      "/api/data?user=" + session.user.email + "&name=" + newNotebookName
+      "/api/add?user=" +
+        session.user.email +
+        "&name=" +
+        newNotebookName +
+        "&type=notebook"
     );
-    window.location.reload(false);
+
     setData(newData);
   };
 
   useEffect(() => {
     async function fetchData() {
-      if (session) {
-        const response = await axios.get("/api/data", {
+      if (session && !data) {
+        const response = await axios.get("/api/get", {
           params: { user: session.user.email },
         });
 
@@ -92,7 +100,7 @@ export default function Home() {
     }
 
     fetchData();
-  }, [session]);
+  }, [session, data]);
 
   if (session) {
     return (
@@ -144,7 +152,7 @@ export default function Home() {
 
             <Box className={styles.profile}>
               <Avatar alt={session.user.name} src={session.user.image} />
-              <Button variant="contained" onClick={() => signOut()}>
+              <Button variant="contained" onClick={() => onUserSignOut()}>
                 Sign out
               </Button>
               <div />
