@@ -33,7 +33,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { useState } from "react";
-import FileItem from "../components/FileItem";
+import FileItem from "../components/FileItem/FileItem";
 import axios from "axios";
 import { Box } from "@mui/system";
 import SideBarItems from "../components/SideBarItems";

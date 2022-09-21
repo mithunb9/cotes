@@ -1,4 +1,3 @@
-import axios from "axios";
 import piston from "piston-client";
 
 const client = piston({ server: "https://emkc.org" });
@@ -10,7 +9,7 @@ export default async function handler(req, res) {
   }
 }
 
-const runCode = async (language, code) => {
+const runCode = async (language: string, code: string): Promise<string> => {
   const result = await client.execute(language, code);
   return result.run.output;
 };

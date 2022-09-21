@@ -1,6 +1,7 @@
 import FolderIcon from "@mui/icons-material/Folder";
 import BookIcon from "@mui/icons-material/Book";
-import styles from "./FileItem.module.css";
+import styles from "FileItem.module.css";
+import React from "react";
 
 export default function FileItem(props) {
   const handleClick = () => {};
