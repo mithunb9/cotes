@@ -27,6 +27,7 @@ interface User {
 }
 
 interface File {
+  id: number;
   name: string;
   contents: Block[];
   type: type;
@@ -59,7 +60,7 @@ const updateUserFiles = async (
   }
 };
 
-const getUser = async (user): Promise<User> => {
+const getUser = async (user: string): Promise<User> => {
   const docRef = doc(db, "users", user);
   const docSnap = await getDoc(docRef);
 
@@ -70,4 +71,23 @@ const getUser = async (user): Promise<User> => {
   }
 };
 
-export { db, updateUserFiles, getUser };
+const getFile = async (fileID: number): Promise<File> => {
+  const docRef = doc(db, "files", fileID);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return { ...docSnap.data(), name: fileID };
+  } else {
+    return { id: fileID, name: "", contents: [], type: "file" };
+  }
+};
+
+const setFile = async (file: File) => {
+  const docRef = await setDoc(doc(db, "files", file.id), {
+    ...file,
+  });
+
+  console.log("Document written with ID: ", docRef.id);
+};
+
+export { db, updateUserFiles, getUser, getFile, setFile };
