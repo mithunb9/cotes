@@ -22,7 +22,6 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import { firestore } from "../firebase/firebase";
 import {
   collection,
   QueryDocumentSnapshot,
@@ -94,6 +93,8 @@ export default function Home() {
         const response = await axios.get("/api/get", {
           params: { user: session.user.email },
         });
+
+        console.log(response.data);
 
         setData(response.data);
       }
