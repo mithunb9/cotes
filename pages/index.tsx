@@ -11,8 +11,6 @@ import {
   IconButton,
   Avatar,
   ButtonGroup,
-  handleOpen,
-  handleClose,
   Typography,
   Modal,
   Dialog,
@@ -65,7 +63,7 @@ export default function Home() {
   };
 
   const onUserSignOut = () => {
-    data = null;
+    setData(null);
     signOut();
   };
 
