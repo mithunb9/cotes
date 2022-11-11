@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import styles from "../styles/Notes.module.css";
-import NoteBlock from "../components/NoteBlock";
+import NoteBlock from "../components/NoteBlock/NoteBlock";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Button } from "@mui/material";
