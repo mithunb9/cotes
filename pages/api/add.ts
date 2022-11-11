@@ -8,8 +8,8 @@ export default async function handler(req, res) {
 
     const filesCollection = db.collection("files");
     const file = {
-      name: req.body.name,
-      type: req.body.type,
+      name: req.query.name,
+      type: req.query.type,
       contents: [],
     };
     const fileResult = await filesCollection.insertOne(file);
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
     const updateDoc = {
       $set: {
-        files: [...files, fileId],
+        fileIds: [...files, fileId],
       },
     };
 

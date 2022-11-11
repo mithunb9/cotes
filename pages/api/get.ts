@@ -10,6 +10,14 @@ export default async function handler(req, res) {
       const collection = db.collection("users");
       const user = await collection.findOne({ email: req.query.user });
 
+      for (let i = 0; i < user.fileIds.length; i++) {
+        const file = await db
+          .collection("files")
+          .findOne({ _id: user.fileIds[i] });
+
+        user.files[i] = file;
+      }
+
       console.log(user);
       res.status(200).json(user);
     }
