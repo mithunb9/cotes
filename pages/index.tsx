@@ -47,16 +47,16 @@ export default function Home() {
 
   const onFileClick = (e) => {
     setFocus(true);
-    setOpenField(data?.files[e].name);
+    setOpenField(user?.files[e].name);
   };
 
   const onUserSignOut = () => {
-    setData(null);
+    setUser(null);
     signOut();
   };
 
   const addNotebook = () => {
-    const newData = data.files.push({
+    const newData = user.files.push({
       name: newNotebookName,
       type: "notebook",
       pages: [],
@@ -70,7 +70,7 @@ export default function Home() {
         "&type=notebook"
     );
 
-    setData(newData);
+    setUser(newData);
   };
 
   useEffect(() => {
