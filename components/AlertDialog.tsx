@@ -30,7 +30,7 @@ export default function AlertDialog() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            This application is currently in heavy beta! Approach with caution!
+            This application is currently in heavy beta! Proceed with caution!
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -39,7 +39,7 @@ export default function AlertDialog() {
             href={"https://github.com/mithunb9/cotes"}
             onClick={handleClose}
           >
-            View Source
+            Contribute
           </Button>
           <Button onClick={handleClose} autoFocus>
             Continue
