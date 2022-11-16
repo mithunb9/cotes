@@ -23,6 +23,7 @@ import FileItem from "../components/FileItem/FileItem";
 import axios from "axios";
 import { Box } from "@mui/system";
 import Editor from "../components/Editor";
+import AlertDialog from "../components/AlertDialog";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -184,6 +185,7 @@ export default function Home() {
         <Button variant="contained" onClick={() => signIn()}>
           Sign in
         </Button>
+        <AlertDialog />
       </div>
     </>
   );
