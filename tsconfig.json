@@ -20,7 +20,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/index.tsxx",
-    "pages/notes.js"
-  ],
+    "pages/notes.tsxx"
+, "components/Editor.jsx"  ],
   "exclude": ["node_modules"]
 }
