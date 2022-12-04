@@ -78,7 +78,8 @@ export default function Home() {
     async function fetchData() {
       if (session && !user) {
         const response = await axios.get("/api/get", {
-          params: { user: session.user.email },
+          // @ts-ignore
+          params: { id: session.user.id },
         });
 
         setUser(response.data);
@@ -89,7 +90,6 @@ export default function Home() {
   }, [session, user]);
 
   if (session) {
-    console.log(user);
     return (
       <>
         <div className={styles.container}>
